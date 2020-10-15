@@ -17,17 +17,27 @@ Character::Character(
 
 void Character::Attack(Character& enemy) const
 {
-	// TODO: Complete me!
+	// TODO: Complete me! 
+	// si distance est proche attaque possible
+	//HP cible -= atq attaquant - def cible
+	if (Distance(enemy) <= 1)
+	{
+		enemy.health_points_ -= attack_ - enemy.defence_;
+	}
 }
 
 bool Character::IsDead() const
 {
 	// TODO: Complete me!
+	if (health_points_ <= 0)
+	{
+		return true;
+	}
 	return false;
 }
 
 float Character::Distance(const Character& character) const
 {
 	// TODO: Complete me!
-	return 1.0f;
+	return std::sqrt(std::pow(xy_.first - character.GetPosition().first, 2.0) + std::pow(xy_.second - character.GetPosition().second, 2.0));
 }

@@ -1,5 +1,6 @@
 #include "hero.h"
 
+#include <algorithm>
 #include <cmath>
 
 Hero::Hero(std::pair<int, int> xy) : 

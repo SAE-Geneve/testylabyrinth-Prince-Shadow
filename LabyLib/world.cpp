@@ -7,6 +7,8 @@
 World::World(const std::string& map, int length) : hero_({0, 0})
 {
 	// TODO: Complete me!
+	//retourner la position du joueur sur la carte
+	return hero_.GetPosition()
 }
 
 void World::EraseDead()
@@ -17,13 +19,21 @@ void World::EraseDead()
 bool World::HasEnemies() const
 {
 	// TODO: Complete me!
-	return true;
+		return enemies_.size();
 }
 
 std::pair<int, int> World::North(const Character& character) const
 {
 	// TODO: Complete me!
-	return { 0, 0 };
+	//deplacement +1 north si !empty return {0, 0}
+	/*if ()
+	{
+
+	}*/
+	if () 
+	{
+		return { 0, 0 };
+	}
 }
 
 std::pair<int, int> World::South(const Character& character) const
@@ -106,6 +116,11 @@ void World::ShowEnemies() const
 void World::EnemyAttack()
 {
 	// TODO: Complete me!
+	//enemy atq player si proche
+	/*if ()
+	{
+		character.health_points_ -= attack_ - character.defence_
+	}*/
 }
 
 std::pair<int, int> World::CheckPosition(
