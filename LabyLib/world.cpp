@@ -8,55 +8,133 @@ World::World(const std::string& map, int length) : hero_({0, 0})
 {
 	// TODO: Complete me!
 	//retourner la position du joueur sur la carte
-	return hero_.GetPosition()
+	//return hero_.GetPosition();
+	std::map<char, int> map_;
+
+	char c;
+	for (int i = 0; i < map.size(); ++i)
+	{
+		std::pair<int, int> pos = { i % length, i / length };
+		c = map[i];
+		if (c == 'E') 
+		{
+		map_.insert (std::pair<char,int>('E', i));
+		}
+		if (c == '.')
+		{
+		map_.insert(std::pair<char, int>('.', i));
+		}
+		if (c == '#')
+		{
+		map_.insert(std::pair<char, int>('#', i));
+
+		}
+		if (c == 'P')
+		{
+			hero_.SetPosition(pos);
+			map_.insert(std::pair<char, int>('P', i));
+		}
+	}
 }
 
 void World::EraseDead()
 {
 	// TODO: Complete me!
+	//detruire les cibles ayant 0 hp ou moins
+	/*if (enemies_.) 
+	{
+
+	}*/
 }
 
 bool World::HasEnemies() const
 {
 	// TODO: Complete me!
-		return enemies_.size();
+	return enemies_.size();
 }
 
 std::pair<int, int> World::North(const Character& character) const
 {
 	// TODO: Complete me!
 	//deplacement +1 north si !empty return {0, 0}
-	/*if ()
+	std::pair<int, int> heroPos;
+	heroPos = hero_.GetPosition();
+	std::pair<int, int> NewPos;
+	NewPos.first = heroPos.first;
+	NewPos.second = heroPos.second - 1;
+	int i = heroPos.first + heroPos.second * 24; // *map_.length => chiffre magique
+	for (int i = 0; i < map_.size(); ++i)
 	{
-
-	}*/
-	if () 
-	{
-		return { 0, 0 };
-	}
+	
+		if (i != '.')
+		{
+			return { 0, 0 }; //ne bouge pas
+	    }
+	}	  
+	return { 0, -1 }; //return deplacement
 }
 
 std::pair<int, int> World::South(const Character& character) const
 {
 	// TODO: Complete me!
-	return { 0, 0 };
+	//deplacement +1 south si !empty return {0, 0}
+	std::pair<int, int> heroPos;
+	heroPos = hero_.GetPosition();
+	std::pair<int, int> NewPos;
+	NewPos.first = heroPos.first;
+	NewPos.second = heroPos.second + 1;
+	int i = heroPos.first + heroPos.second * 24; // *map_.length => chiffre magique
+		/*if (map_ != '.')
+		{
+			return { 0, 0 }; //ne bouge pas
+		}*/
+	return { 0, +1 }; //return deplacement
 }
 
 std::pair<int, int> World::East(const Character& character) const
 {
 	// TODO: Complete me!
-	return { 0, 0 };
+	//deplacement +1 east si !empty return {0, 0}
+	std::pair<int, int> heroPos;
+	heroPos = hero_.GetPosition();
+	std::pair<int, int> NewPos;
+	NewPos.first = heroPos.first + 1;
+	NewPos.second = heroPos.second;
+	int i = heroPos.first + heroPos.second * 24; // *map_.length => chiffre magique
+		/*if (map_ != '.')
+		{
+			return { 0, 0 }; //ne bouge pas
+		}*/
+	return { +1, 0 }; //return deplacement
 }
 
 std::pair<int, int> World::West(const Character& character) const
 {
 	// TODO: Complete me!
-	return { 0, 0 };
+	//deplacement +1 west si !empty return {0, 0}
+	std::pair<int, int> heroPos;
+	heroPos = hero_.GetPosition();
+	std::pair<int, int> NewPos;
+	NewPos.first = heroPos.first - 1;
+	NewPos.second = heroPos.second;
+	int i = heroPos.first + heroPos.second * 24; // *map_.length => chiffre magique
+		/*if (map_ != '.')
+		{
+			return { 0, 0 }; //ne bouge pas
+		}*/
+	return { -1, 0 }; //return deplacement
 }
 
 void World::HeroAttack()
 {
 	// TODO: Complete me!
+	//attaquer uniquement les enemies disponible
+	for each (Enemy var in enemies_)
+	{
+			hero_.Attack(var);
+	}
+
+
 }
 
 void World::ShowMap() const
@@ -117,7 +195,7 @@ void World::EnemyAttack()
 {
 	// TODO: Complete me!
 	//enemy atq player si proche
-	/*if ()
+	/*if (Distance(Hero) <= 1)
 	{
 		character.health_points_ -= attack_ - character.defence_
 	}*/

@@ -39,5 +39,11 @@ bool Character::IsDead() const
 float Character::Distance(const Character& character) const
 {
 	// TODO: Complete me!
+	int x1 = xy_.first;
+	int x2 = character.GetPosition().first;
+	int y1 = xy_.second;
+	int y2 = character.GetPosition().second;
 	return std::sqrt(std::pow(xy_.first - character.GetPosition().first, 2.0) + std::pow(xy_.second - character.GetPosition().second, 2.0));
 }
+
+
